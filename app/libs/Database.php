@@ -24,7 +24,7 @@ class Database
 
     public function query($qry)
     {
-        $this->stmt->prepare($qry);
+        $this->stmt = $this->dbh->prepare($qry);
     }
     public function bind($param, $value, $type = '')
     {
