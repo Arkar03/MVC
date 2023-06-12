@@ -4,25 +4,30 @@ require_once APPROOT . "/views/inc/nav.php";
 ?>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
         <div class="container">
             <div class="col-md-8 offset-md-2">
-                <div class="card">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <div class="card bg-light p-5">
+                    <h1 class="text-secondary text-center mb-3">Register</h1>
+                    <form action="" method="">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Username" autofocus>
+                            <label for="floatingInput">Username</label>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Email" id="floatingInput">
+                            <label for="floatingInput">Email address</label>
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <div class="form-floating mb-3">
+                            <input type="password" name="password" class="form-control" placeholder="Password" id="floatingInput" >
+                            <label for="floatingInput">Password</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-floating mb-3">
+                            <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" id="floatingInput" >
+                            <label for="floatingInput">Confirm Password</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark">Submit</button>
                     </form>
                 </div>
             </div>

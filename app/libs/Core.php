@@ -31,6 +31,6 @@ class Core
         }
 
         $params = !empty($url) ? array_values($url) : [];
-        call_user_func([$this->className, $this->methodName], $params);
+        call_user_func([$this->className, $this->methodName], ...$params);
     }
 }

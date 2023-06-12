@@ -12,4 +12,8 @@ class User extends Controller
     public function login() {
         $this->view("user/login");
     }
+    // public function index() {
+        
+    // }
+
 }
