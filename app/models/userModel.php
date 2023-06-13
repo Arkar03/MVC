@@ -11,4 +11,13 @@ class userModel {
         $this->db->query("SELECT * FROM users");
         return $this->db->multipleResult();
     }
+    public function register($name, $email, $password) {
+        $password = password_hash($password,PASSWORD_BCRYPT);
+        $this->db->query("INSERT INTO users(name,email,password) VALUES (:name,:email,:password)");
+        $this->db->bind(":name",$name);
+        $this->db->bind(":email",$email);
+        $this->db->bind(":password",$password);
+
+        return $this->db->execute();
+    }
 }
