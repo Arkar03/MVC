@@ -3,7 +3,7 @@ require_once "C:/xampp/htdocs/MVC/app/models/userModel.php";
 // include_once "../models/userModel.php";
 class Home extends Controller
 {
-    private $userModel;
+    // private $userModel;
     public function __construct()
     {
         $userModel = new userModel();

@@ -17,8 +17,10 @@ require_once APPROOT . "/views/inc/nav.php";
         <div class="container">
             <div class="col-md-8 offset-md-2">
                 <div class="card bg-light p-5">
+                    <?php flash('register_success') ?>
+                    <?php flash('login_fail') ?>
                     <h1 class="text-dark text-center mb-3">Login</h1>
-                    <form action="<?= URLROOT."/user/login" ?>" method="POST">
+                    <form action="<?= URLROOT."user/login" ?>" method="POST">
                         
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control <?= !empty($data['email_err']) ? 'is-invalid' : '' ?>" name="email" placeholder="Email" id="floatingInput">

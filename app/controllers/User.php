@@ -28,6 +28,11 @@ class User extends Controller
             }
             if (empty($data['email'])) {
                 $data['email_err'] = "Please Enter Email!";
+            } else {
+                // $this->um->getUserByEmail($data['email']) ?  $data['email_err'] = "Email is already taken." : "";
+                if ($this->um->getUserByEmail($data['email'])) {
+                    $data['email_err'] = "Email is already taken.";
+                }
             }
             if (empty($data['password'])) {
                 $data['password_err'] = "Please Enter Password!";
@@ -40,20 +45,21 @@ class User extends Controller
                 }
             }
 
-
-            if (empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
-                if($this->um->register($data['name'], $data['email'], $data['password'])){
+            if (empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+                if ($this->um->register($data['name'], $data['email'], $data['password'])) {
+                    flash('register_success', "Register Success, Please Login");
                     $this->view('user/login');
-                }else {
+                } else {
                     $this->view('user/register');
                 }
-                
             } else {
                 $this->view("user/register", $data);
             }
         } else {
             $this->view("user/register");
         }
+        // var_dump($data['email_err']);
+
     }
 
     public function login()
@@ -73,10 +79,27 @@ class User extends Controller
             }
             if (empty($data['password'])) {
                 $data['password_err'] = "Please Enter Password!";
+            } else {
+                $rowUser = $this->um->getUserByEmail($data['email']);
             }
-
+            if (empty($data['password'])) {
+                $data['password_err'] = "Please Enter Password!";
+            }
             if (empty($data['email_err']) && empty($data['password_err'])) {
-                echo "good to go";
+                if ($rowUser) {
+
+                    $hash_pass = $rowUser->password;
+                    if (password_verify($data['password'], $hash_pass)) {
+                        setUserSession($rowUser);
+                        redirect(URLROOT.'admin/home');
+                        $this->view('home/index');
+                    } else {
+                        flash('login_fail', 'Incorrect Email or Password');
+                        $this->view('user/login');
+                    }
+                } else {
+                    $data['email_err'] = "Incorrect Email";
+                }
             } else {
                 $this->view("user/login", $data);
             }
@@ -85,7 +108,8 @@ class User extends Controller
         }
     }
 
-    public function getUserByEmail($email) {
-        $this->um("SELECT * FROM users WHERE email=:email");
+    public function logout() {
+        unsetUserSession();
+        $this->view('home/index');
     }
 }
