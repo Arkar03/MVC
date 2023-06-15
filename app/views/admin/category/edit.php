@@ -22,7 +22,7 @@ require_once APPROOT . "/views/inc/nav.php";
                                 <span class=""><?= $cat->name ?></span>
                                 <span>
                                     <a href="<?= URLROOT.'category/edit/'.$cat->id ?>"><i class="fa fa-edit text-warning"></i></a>
-                                    <a href="#"><i class="fa fa-trash text-danger"></i></a>
+                                    <a href="<?= URLROOT.'category/delete/'.$cat->id ?>"><i class="fa fa-trash text-danger"></i></a>
                                 </span>
                             </li>
                         <?php endforeach ?>

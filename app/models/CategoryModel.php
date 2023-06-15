@@ -43,4 +43,9 @@ class CategoryModel
         $this->db->bind(":id",$id);
         return $this->db->execute();
     }
+    public function deleteCat($id) {
+        $this->db->query('DELETE FROM category WHERE id=:id');
+        $this->db->bind(":id",$id);
+        return $this->db->execute();
+    }
 }

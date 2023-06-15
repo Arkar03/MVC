@@ -61,7 +61,7 @@ class Category extends Controller
                     $dta['currentCat'] = $this->catModel->getCategoryById(gettCurrentId());
                     deleteCurrentId();
                     flash('cat_edit_error', 'Category Update Fail!');
-                    redirect(URLROOT . 'admin/category/edit',$dta);
+                    redirect(URLROOT . 'admin/category/edit', $dta);
                 }
             } else {
                 $dta['name_err'] = "Category Name must supply!";
@@ -76,7 +76,12 @@ class Category extends Controller
         }
     }
 
-    public function delete($data=[]) {
-        echo "Deleted id is ".$data[0];
+    public function delete($data = [])
+    {
+        if ($this->catModel->deleteCat($data[0])) {
+            redirect(URLROOT . 'category/create');
+        } else {
+            redirect(URLROOT . 'category/create');
+        }
     }
 }

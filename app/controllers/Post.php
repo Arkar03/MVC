@@ -1,17 +1,20 @@
-<?php 
+<?php
+require_once "C:/xampp/htdocs/MVC/app/models/PostModel.php";
 
-class Post  {
+class Post extends Controller
+{
+    private $postModel;
     public function __construct()
     {
-        echo "I am constructor of " . __CLASS__ . " class<br>";
+        $this->postModel = new PostModel();
     }
-    public function index()
+    public function home()
     {
-        echo "I am index method of " . __CLASS__ . " class <br>";
+        $this->view('admin/post/home');
     }
-    public function show($data=[])
+    public function show($data = [])
     {
         echo "This is a function of " . __CLASS__ . " class<br>";
-        echo "<pre>" . print_r($data,true) . "</pre>";
+        echo "<pre>" . print_r($data, true) . "</pre>";
     }
-} 
+}
