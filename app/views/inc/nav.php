@@ -47,7 +47,7 @@
                     <?php endif ?> -->
                     <?php if (getUserSession()) :    ?>
                         <li class="nav-item">
-                            <a class="nav-link text-white english" aria-current="page" href="<?php echo URLROOT . 'admin/home';    ?>">Admin Pannel</a>
+                            <a class="nav-link text-warning english" aria-current="page" href="<?php echo URLROOT . 'admin/home';    ?>">Admin</a>
                         </li>
                     <?php endif;  ?>
                     <li class="nav-item dropdown ">

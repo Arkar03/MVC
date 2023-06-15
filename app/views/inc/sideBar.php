@@ -6,7 +6,7 @@
         <div class="card-block">
             <ul class="list-group">
                 <li class="list-group-item rounded-0">
-                    <a href="<?= URLROOT.'category/home'?>" class="text-decoration-none ps-4 text-dark">Category</a>
+                    <a href="<?= URLROOT.'category/create'?>" class="text-decoration-none ps-4 text-dark">Category</a>
                 </li>
                 <li class="list-group-item rounded-0">
                     <a href="<?= URLROOT.'category/home'?>" class="text-decoration-none ps-4 text-dark">Post</a>

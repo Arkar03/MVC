@@ -21,8 +21,8 @@ require_once APPROOT . "/views/inc/nav.php";
                             <li class="list-group-item rounded-0 d-flex justify-content-between">
                                 <span class=""><?= $cat->name ?></span>
                                 <span>
-                                    <a href="<?= URLROOT . "category/edit/" . strval($cat->id) ?>"><i class="fa fa-edit text-warning"></i></a>
-                                    <a href="<?= URLROOT . "category/delete/$cat->id" ?>"><i class="fa fa-trash text-danger"></i></a>
+                                    <a href="<?= URLROOT.'category/edit/'.$cat->id ?>"><i class="fa fa-edit text-warning"></i></a>
+                                    <a href="#"><i class="fa fa-trash text-danger"></i></a>
                                 </span>
                             </li>
                         <?php endforeach ?>
@@ -35,11 +35,11 @@ require_once APPROOT . "/views/inc/nav.php";
             <?php flash('cat_create_fail') ?>
             <div class="card bg-light p-4 my-3">
 
-                <h1 class="text-dark text-center mb-3">Create Category</h1>
-                <form action="<?= URLROOT . "category/create" ?>" method="POST">
+                <h1 class="text-dark text-center mb-3">Edit Category</h1>
+                <form action="<?= URLROOT . "category/edit" ?>" method="POST">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control <?= !empty($data['name_err']) ? 'is-invalid' : '' ?>" name="name" placeholder="Name" id="name">
+                        <input type="text" class="form-control <?= !empty($data['name_err']) ? 'is-invalid' : '' ?>" name="name" placeholder="Name" id="name" value="<?= $data['currentCat']->name ?>">
                         <label for="floatingInput">Category Name</label>
                         <div class="invalid-feedback">
                             <?= !empty($data['name_err']) ? $data['name_err'] : '' ?>
@@ -50,7 +50,7 @@ require_once APPROOT . "/views/inc/nav.php";
                         <!-- <a href="<?= URLROOT . 'user/register' ?>" class="text-secondary hover-me">Don't have an account? Please Register!</a> -->
                         <div class="">
                             <button type=" cancle" class="btn btn-outline-dark">Cancle</button>
-                            <button type="submit" class="btn btn-dark">Create</button>
+                            <button type="submit" class="btn btn-dark">Update</button>
                         </div>
                     </div>
 
