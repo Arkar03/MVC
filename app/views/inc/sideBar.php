@@ -9,7 +9,7 @@
                     <a href="<?= URLROOT.'category/create'?>" class="text-decoration-none ps-4 text-dark">Category</a>
                 </li>
                 <li class="list-group-item rounded-0">
-                    <a href="<?= URLROOT.'post/home'?>" class="text-decoration-none ps-4 text-dark">Post</a>
+                    <a href="<?= URLROOT.'post/home/1'?>" class="text-decoration-none ps-4 text-dark">Post</a>
                 </li>
                 <li class="list-group-item rounded-0">
                     <a href="<?= URLROOT.'category/home'?>" class="text-decoration-none ps-4 text-dark">Edit</a>
