@@ -19,15 +19,17 @@ class Post extends Controller
         ];
         $data['cats'] = $this->catModel->getAllCategory();
         $data['posts'] = $this->postModel->getPostByCatId($params[0]);
-        $this->view('admin/post/home',$data);
-    }
-    public function show($data = [])
-    {
-        echo "This is a function of " . __CLASS__ . " class<br>";
-        echo "<pre>" . print_r($data, true) . "</pre>";
+        $this->view('admin/post/home', $data);
     }
 
-    public function create() {
+    public function show($params = [])
+    {
+        $post = $this->postModel->getPostById($params[0]);
+        // var_dump($params[0]);
+        $this->view('admin/post/show', ['post' => $post]);
+    }
+    public function create()
+    {
         $data = [
             'title' => '',
             'desc' => '',
@@ -39,12 +41,50 @@ class Post extends Controller
             'content_err' => '',
         ];
         $data['cats'] = $this->catModel->getAllCategory();
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            print_r($_FILES['file']);
-            
-            $this->view('admin/post/create',$data);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $root =  dirname(dirname(dirname(__FILE__)));
+            $files = $_FILES['file'];
+            $data['title'] = $_POST['title'];
+            $data['desc'] = $_POST['desc'];
+            $data['content'] = $_POST['content'];
+
+            if (empty($data['title'])) {
+                $data['title_err'] = "Title must supply";
+            }
+            if (empty($data['desc'])) {
+                $data['desc_err'] = "Desc must supply";
+            }
+            if (empty($data['content'])) {
+                $data['content_err'] = "Content must supply";
+            }
+
+
+            if (empty($data['title_err']) && empty($data['desc_err']) && empty($data['content_err'])) {
+                if (!empty($files['name'])) {
+                    move_uploaded_file($files['tmp_name'], $root . '/public/assets/uploads/' . $files['name']);
+                    if ($this->postModel->insertPost($_POST['cat_id'], $data['title'], $data['desc'], $files['name'], $data['content'])) {
+                        flash('pis', 'Post insert successfully');
+                        redirect(URLROOT . 'post/home/1');
+                    } else {
+                        $this->view('admin/post/creat', $data);
+                    }
+                } else {
+                    flash('fne', 'file not exits, please inset file');
+                    $this->view('admin/post/create', $data);
+                }
+            } else {
+                $this->view('admin/post/create', $data);
+            }
+
+            $this->view('admin/post/create', $data);
         } else {
-            $this->view('admin/post/create',$data);
+            $this->view('admin/post/create', $data);
         }
+    }
+    public function edit($params = []) {
+        $data['cats'] = $this->catModel->getAllCategory();
+        $data['post'] = $this->postModel->getPostById($params[0]);
+        $this->view('admin/post/edit', $data);
     }
 }

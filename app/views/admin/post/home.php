@@ -24,8 +24,8 @@ require_once APPROOT . "/views/inc/nav.php";
                         </li>
                     <?php endforeach ?>
                 </ul>
-                <div class="d-flex  mt-4">
-                    <a href="<?= URLROOT.'post/create' ?>" type="button" class="btn btn-dark border btn-circle btn-lg justify-content-center">
+                <div class="d-flex my-4 justify-content-center">
+                    <a href="<?= URLROOT.'post/create' ?>" type="button" class="btn btn-dark border btn-circle btn-lg">
                         <i class="fa-solid fa-plus"></i>
                         <span>Create Post</span>
                     </a>
@@ -46,7 +46,7 @@ require_once APPROOT . "/views/inc/nav.php";
                                 <?= $post->desc; ?>
                             </p>
                             <div class="float-end no-gutters">
-                                <button class="btn btn-success text-white btn-sm text-dark">Detail</button>
+                                <a href="<?= URLROOT.'post/show/'.$post->id ?>" class="btn btn-success text-white btn-sm text-dark">Detail</a>
                                 <button class="btn btn-warning btn-sm text-dark">Edit</button>
                                 <button class="btn btn-danger btn-sm text-white">Delete</button>
                             </div>

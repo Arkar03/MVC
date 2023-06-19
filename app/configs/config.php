@@ -7,4 +7,5 @@ define("DB_PASS", '');
 
 define("APPROOT",dirname(dirname(__FILE__)));
 define("URLROOT","http://localhost/MVC/");
+define("ROOT","/MVC/");
 define("SITENAME","MVC_main");
