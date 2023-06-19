@@ -14,6 +14,7 @@ require_once APPROOT . "/views/inc/nav.php";
 </style>
 <div class="container-fluid">
     <div class="container my-5">
+        <?php flash('del_suc') ?>
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-group">
@@ -47,8 +48,8 @@ require_once APPROOT . "/views/inc/nav.php";
                             </p>
                             <div class="float-end no-gutters">
                                 <a href="<?= URLROOT.'post/show/'.$post->id ?>" class="btn btn-success text-white btn-sm text-dark">Detail</a>
-                                <button class="btn btn-warning btn-sm text-dark">Edit</button>
-                                <button class="btn btn-danger btn-sm text-white">Delete</button>
+                                <a href="<?= URLROOT.'post/edit/'.$post->id ?>" class="btn btn-warning btn-sm text-dark">Edit</a>
+                                <a href="<?= URLROOT.'post/delete/'.$post->id ?>" class="btn btn-danger btn-sm text-white">Delete</a>
                             </div>
 
                         </div>

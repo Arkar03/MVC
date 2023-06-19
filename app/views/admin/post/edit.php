@@ -6,8 +6,9 @@ require_once APPROOT . "/views/inc/nav.php";
 <div class="container my-5">
     <div class="col-md-8 offset-md-2">
         <div class="card bg-light p-5">
+            <?= flash('pef') ?>
             <h1 class="text-dark text-center mb-3">Edit</h1>
-            <form action="<?= URLROOT . "post/create" ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?= URLROOT . "post/edit" ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control <?= !empty($data['title_err']) ? 'is-invalid' : '' ?>" id="title" name="title" placeholder="Username" value="<?= $data['post']->title ?>" autofocus>
                     <label for="title">Title</label>
@@ -17,7 +18,7 @@ require_once APPROOT . "/views/inc/nav.php";
                 </div>
                 <div class="form-floating mb-3">
                     <textarea name="desc" class="form-control <?= !empty($data['desc_err']) ? 'is-invalid' : '' ?>" placeholder="Leave a comment here" id="desc" style="height: 100px">
-                        <?= $data['post']->desc ?>
+                        <?= $data['desc'] ?>
                     </textarea>
                     <label for="desc">Description</label>
                     <div class="invalid-feedback">
@@ -26,6 +27,7 @@ require_once APPROOT . "/views/inc/nav.php";
                 </div>
                 <div class="mb-3">
                     <input name="file" class="form-control form-control-sm" id="file" type="file" required>
+                    <input type="hidden" name="old_file" value="<?= $data['post']->image ?>">
                     <!-- <label for="file">Description</label> -->
                     <div class="invalid-feedback">
                         <?= !empty($data['file_err']) ? $data['file_err'] : '' ?>
@@ -33,7 +35,7 @@ require_once APPROOT . "/views/inc/nav.php";
                 </div>
                 <div class="form-floating mb-3">
                     <textarea name="content" class="form-control <?= !empty($data['title_err']) ? 'is-invalid' : '' ?>" placeholder="Leave a comment here" id="content" style="height: 100px">
-                    <?= $data['post']->desc ?>
+                    <?= $data['post']->content ?>
                     </textarea>
                     <label for="content">Content</label>
                     <div class="invalid-feedback">
